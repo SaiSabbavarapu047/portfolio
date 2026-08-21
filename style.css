@@ -1,7 +1,3 @@
-/* ==========================================
-   RESET
-========================================== */
-
 *{
   margin:0;
   padding:0;
@@ -18,11 +14,15 @@ html{
   --surface2:#181B20;
   --text:#F5F7FA;
   --muted:#A8B3C2;
+
   --primary:#039f80;
   --primary-dark:#008F73;
+
   --gold:#D4A55D;
+
   --border:rgba(255,255,255,.08);
   --glass:rgba(255,255,255,.05);
+
   --shadow:rgba(0,0,0,.35);
 }
 
@@ -48,7 +48,9 @@ body{
     var(--bg);
 
   color:var(--text);
+
   line-height:1.7;
+
   overflow-x:hidden;
 }
 
@@ -61,6 +63,7 @@ body::before{
   content:"";
 
   position:fixed;
+
   width:100%;
   height:100%;
 
@@ -77,6 +80,7 @@ body::before{
     );
 
   pointer-events:none;
+
   z-index:-2;
 }
 
@@ -125,6 +129,7 @@ nav{
   width:100%;
 
   display:flex;
+
   justify-content:space-between;
   align-items:center;
 
@@ -196,6 +201,7 @@ nav a::after{
   bottom:-6px;
 
   width:0%;
+
   height:2px;
 
   background:
@@ -482,7 +488,7 @@ section h2::after{
 
 
 /* ==========================================
-   SKILLS
+   TECHNICAL SKILLS
 ========================================== */
 
 .skills{
@@ -491,45 +497,289 @@ section h2::after{
   grid-template-columns:
     repeat(
       auto-fit,
-      minmax(180px,1fr)
+      minmax(170px,1fr)
     );
 
-  gap:20px;
+  gap:24px;
+
+  margin-top:10px;
 }
 
 
+/* ==========================================
+   SKILL CARD
+========================================== */
+
 .skill{
-  padding:24px;
+  min-height:180px;
+
+  padding:28px 20px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
 
   text-align:center;
 
-  background:var(--surface);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.055),
+      rgba(255,255,255,.025)
+    );
 
   border:1px solid var(--border);
 
-  border-radius:18px;
+  border-radius:22px;
 
-  font-weight:600;
+  position:relative;
 
-  transition:.4s;
+  overflow:hidden;
+
+  transition:
+    .45s cubic-bezier(.22,1,.36,1);
+
+  cursor:pointer;
 }
 
 
-.skill:hover{
-  transform:translateY(-8px);
+/* Top Glow */
+
+.skill::before{
+  content:"";
+
+  position:absolute;
+
+  width:130px;
+  height:130px;
+
+  top:-70px;
+  right:-60px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0,212,170,.16),
+      transparent 70%
+    );
+
+  transition:.5s;
+
+  pointer-events:none;
+}
+
+
+/* Bottom Glow */
+
+.skill::after{
+  content:"";
+
+  position:absolute;
+
+  width:100px;
+  height:100px;
+
+  bottom:-60px;
+  left:-50px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(212,165,93,.10),
+      transparent 70%
+    );
+
+  pointer-events:none;
+}
+
+
+/* ==========================================
+   SKILL ICON
+========================================== */
+
+.skill-icon{
+  width:72px;
+  height:72px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  margin-bottom:16px;
+
+  border-radius:20px;
 
   background:
     linear-gradient(
-      135deg,
-      #16352d,
-      #1a2024
+      145deg,
+      rgba(0,212,170,.12),
+      rgba(212,165,93,.08)
     );
 
-  border-color:var(--primary);
+  border:1px solid
+    rgba(0,212,170,.18);
+
+  color:var(--primary);
+
+  font-size:42px;
+
+  position:relative;
+
+  z-index:2;
+
+  transition:
+    .45s cubic-bezier(.22,1,.36,1);
 
   box-shadow:
-    0 18px 40px
-    rgba(0,212,170,.2);
+    0 10px 30px
+    rgba(0,0,0,.25);
+}
+
+
+/* Devicon */
+
+.skill-icon i{
+  font-size:42px;
+
+  line-height:1;
+
+  transition:.45s;
+
+  filter:
+    drop-shadow(
+      0 6px 12px
+      rgba(0,0,0,.25)
+    );
+}
+
+
+/* Text */
+
+.skill span{
+  color:var(--text);
+
+  font-size:.95rem;
+
+  font-weight:600;
+
+  letter-spacing:.2px;
+
+  position:relative;
+
+  z-index:2;
+
+  transition:.35s;
+}
+
+
+/* ==========================================
+   CUSTOM TECH ICONS
+========================================== */
+
+.scan-icon{
+  font-size:25px;
+
+  font-weight:800;
+
+  letter-spacing:-1px;
+
+  color:var(--primary);
+}
+
+
+.lidar-icon{
+  font-size:42px;
+
+  color:var(--gold);
+
+  text-shadow:
+    0 0 18px
+    rgba(212,165,93,.35);
+}
+
+
+.qa-icon{
+  font-size:38px;
+
+  font-weight:800;
+
+  color:var(--primary);
+}
+
+
+.bim-icon{
+  font-size:24px;
+
+  font-weight:800;
+
+  letter-spacing:1px;
+
+  color:var(--gold);
+}
+
+
+/* ==========================================
+   SKILL HOVER
+========================================== */
+
+.skill:hover{
+  transform:
+    translateY(-10px)
+    scale(1.02);
+
+  border-color:
+    rgba(0,212,170,.4);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(22,53,45,.75),
+      rgba(26,32,36,.8)
+    );
+
+  box-shadow:
+    0 22px 50px
+    rgba(0,0,0,.4),
+    0 0 28px
+    rgba(0,212,170,.10);
+}
+
+
+.skill:hover::before{
+  transform:scale(1.5);
+}
+
+
+.skill:hover .skill-icon{
+  transform:
+    translateY(-5px)
+    rotateY(360deg);
+
+  border-color:
+    rgba(0,212,170,.45);
+
+  box-shadow:
+    0 15px 35px
+    rgba(0,212,170,.16);
+}
+
+
+.skill:hover .skill-icon i{
+  transform:scale(1.08);
+}
+
+
+.skill:hover span{
+  color:var(--primary);
 }
 
 
@@ -711,7 +961,6 @@ section h2::after{
   display:inline-flex;
 
   align-items:center;
-
   justify-content:center;
 
   gap:10px;
@@ -922,6 +1171,14 @@ footer h2{
     font-size:1.3rem;
   }
 
+  .skills{
+    grid-template-columns:
+      repeat(
+        3,
+        minmax(150px,1fr)
+      );
+  }
+
 }
 
 
@@ -981,6 +1238,52 @@ footer h2{
   }
 
 
+  /* ========================================
+     MOBILE TECHNICAL SKILLS
+  ======================================== */
+
+  .skills{
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0,1fr)
+      );
+
+    gap:16px;
+  }
+
+
+  .skill{
+    min-height:165px;
+
+    padding:22px 12px;
+
+    border-radius:20px;
+  }
+
+
+  .skill-icon{
+    width:62px;
+    height:62px;
+
+    border-radius:17px;
+
+    margin-bottom:13px;
+
+    font-size:35px;
+  }
+
+
+  .skill-icon i{
+    font-size:35px;
+  }
+
+
+  .skill span{
+    font-size:.86rem;
+  }
+
+
   /* PDF PROJECT CARD */
 
   .project-preview{
@@ -1034,9 +1337,6 @@ footer h2{
     font-size:.9rem;
   }
 
-
-  /* Disable floating movement
-     slightly on project cards */
 
   .project-preview{
     animation:none;
@@ -1095,6 +1395,52 @@ footer h2{
     padding:
       25px
       20px;
+  }
+
+
+  /* ========================================
+     SMALL MOBILE SKILLS
+  ======================================== */
+
+  .skills{
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0,1fr)
+      );
+
+    gap:12px;
+  }
+
+
+  .skill{
+    min-height:150px;
+
+    padding:18px 8px;
+
+    border-radius:17px;
+  }
+
+
+  .skill-icon{
+    width:56px;
+    height:56px;
+
+    border-radius:15px;
+
+    font-size:30px;
+
+    margin-bottom:11px;
+  }
+
+
+  .skill-icon i{
+    font-size:30px;
+  }
+
+
+  .skill span{
+    font-size:.78rem;
   }
 
 
@@ -1158,6 +1504,11 @@ footer h2{
 
 
   .project-btn:hover{
+    transform:none;
+  }
+
+
+  .skill:hover .skill-icon{
     transform:none;
   }
 
